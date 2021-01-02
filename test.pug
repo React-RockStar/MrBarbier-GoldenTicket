@@ -1,0 +1,287 @@
+mixin products-slider($articles, $sliderId)
+  .products-slider(id="#{sliderId}")
+    - foreach($articles as $article)
+      .product-card
+        .product-image
+          img(src="#{$article.imgSrc}")
+        .macaron
+          .int #{$article.price} €
+        .product-info
+          .product-type #{$article["product-type"]}
+          .product-name #{$article["product-name"]}
+
+mixin happy-users
+  .happy-users
+    block slides
+      - $happyUsers = [["img" => "/images/homePage/Avis-Monsieur-Barbier-1.jpg", "text" => "Au début, j'ai testé le site pour ses prix imbattables, puis je suis resté pour la qualité des lames, et la souplesse des formules, et je le recommande pour la gentillesse de l’équipe !", "city" => "Seignosse", "name" => "David S."],["img" => "/images/homePage/Avis-Monsieur-Barbier-2.jpg", "text" => "Dix années que je partage la vie de mon homme, et avec votre coffret, vous m'avez permis de lui offrir LE cadeau original, on aurait dit un gamin à qui on offre sa première petite voiture !", "city" => "Paris", "name" => "Eleonore"],["img" => "/images/homePage/Avis-Monsieur-Barbier-3.jpg", "text" => "Chez Peppino, nous sommes barbiers de père en fils, et vos produits sont dignes des plus grandes marques professionnelles, toutes nos félicitations !", "city" => "Rome", "name" => "Pietro C."]]
+      - foreach($happyUsers as $happyUser) 
+        .happy-user
+          img(src="#{$happyUser.img}")
+          .text #{$happyUser.text}
+          .name #{$happyUser.name}
+          .city.grey-subtitle #{$happyUser.city}
+
+extends layouts/NEW_layout.pug
+
+append styles
+  link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css")
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css')
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css')
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css')
+  link(rel="stylesheet", href="/css/new-golden-ticket")
+
+block append scripts
+  - $goldenTicketSources = ['/js/lib/fb.js', '/js/lib/twitter.js', '//cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.min.js', '/js/goldenTicketPage.js']
+  +scriptsHeaders($goldenTicketSources)
+  script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js")
+  script(src="https://hammerjs.github.io/dist/hammer.js")
+  script(src="/js/homePage.js")
+  script(src="/js/goldenTicket.js")
+
+block append pugVariables
+  - $pageColor = "#0f0f0f";
+block content
+  - $goldenTicketData = ["movieTitle" => "Docteur ?", "releaseDate" => "11 Septembre 2019"]
+  - $ArticlesData = ["shaving" => [["product-name" => "better-shave 175ml", "product-type" => "Crème de rasage","price" => 9.99,"imgSrc" => "/images/newSite/products/coffret/rituel/Monsieur-Barbier-Coffret-Cadeau-Rasage-Rituel-Barbier-Produits-XL.png"],["product-name" => "better-shave 175ml", "product-type" => "Crème de rasage","price" => 9.99,"imgSrc" => "/images/newSite/products/coffret/rituel/Monsieur-Barbier-Coffret-Cadeau-Rasage-Rituel-Barbier-Produits-XL.png"],["product-name" => "better-shave 175ml", "product-type" => "Crème de rasage","price" => 9.99,"imgSrc" => "/images/newSite/products/coffret/rituel/Monsieur-Barbier-Coffret-Cadeau-Rasage-Rituel-Barbier-Produits-XL.png"]],"skin" => [["product-name" => "better-shave 175ml", "product-type" => "Crème de rasage","price" => 9.99,"imgSrc" => "/images/newSite/products/coffret/rituel/Monsieur-Barbier-Coffret-Cadeau-Rasage-Rituel-Barbier-Produits-XL.png"],["product-name" => "better-shave 175ml", "product-type" => "Crème de rasage","price" => 9.99,"imgSrc" => "/images/newSite/products/coffret/rituel/Monsieur-Barbier-Coffret-Cadeau-Rasage-Rituel-Barbier-Produits-XL.png"],["product-name" => "better-shave 175ml", "product-type" => "Crème de rasage","price" => 9.99,"imgSrc" => "/images/newSite/products/coffret/rituel/Monsieur-Barbier-Coffret-Cadeau-Rasage-Rituel-Barbier-Produits-XL.png"]],"beard" => [["product-name" => "better-shave 175ml", "product-type" => "Crème de rasage","price" => 9.99,"imgSrc" => "/images/newSite/products/coffret/rituel/Monsieur-Barbier-Coffret-Cadeau-Rasage-Rituel-Barbier-Produits-XL.png"],["product-name" => "better-shave 175ml", "product-type" => "Crème de rasage","price" => 9.99,"imgSrc" => "/images/newSite/products/coffret/rituel/Monsieur-Barbier-Coffret-Cadeau-Rasage-Rituel-Barbier-Produits-XL.png"],["product-name" => "better-shave 175ml", "product-type" => "Crème de rasage","price" => 9.99,"imgSrc" => "/images/newSite/products/coffret/rituel/Monsieur-Barbier-Coffret-Cadeau-Rasage-Rituel-Barbier-Produits-XL.png"]]]
+  
+  .container
+    // Desktop Hero section
+    .desktop-hero
+      .desktop-hero-main
+        .desktop-hero-movie
+          .hero-circle-top
+          .hero-circle-bottom
+        .desktop-hero-content
+          .desktop-hero-content-image
+            img(src='/images/newSite/goldenTicketPage/group-2.png' alt='')
+          .desktop-hero-text
+            p FILM
+            - $filmTitle = $gt['title']
+            h2= "" + filmTitle + " ?"
+            p DATE LIMITE
+            h4= gt.deadline
+            p NOMBRE DE LOTS
+            h4= gt.prizes_infos
+            a(href='#')
+              button.hero-btn(type='button')
+                | Participez en 2 clics !
+      .desktop-hero-cinema
+        img(src='/images/newSite/goldenTicketPage/fond-si-ge.png' alt='')
+    // End desktop hero section
+    // Mobile hero section
+    .mobile-hero
+      .mobile-hero-img-one
+        img(src='/images/newSite/goldenTicketPage/golden-right-copy@3x.png' alt='')
+      .mobile-hero-movie
+        .mobile-hero-circle-left
+        .mobile-hero-circle-right
+        img(src='/images/newSite/goldenTicketPage/docteur-french-movie-poster.jpg' alt='')
+      .mobile-hero-img-two
+        img(src='/images/newSite/goldenTicketPage/fond-si-ge@3x.png' alt='')
+    // End mobile hero section
+    // Film section
+    .film-section
+      .film-item
+        .film-content
+          h4 Chers amis,
+          p
+            | Pour ce dernier Golden Ticket de l&rsquo;ann&eacute;e nous vous pr&eacute;sentons une belle surprise du cin&eacute;ma fran&ccedil;ais qui est DOCTEUR ? r&eacute;alis&eacute; par Tristan S&eacute;gu&eacute;la, avec Michel Blanc et Hakim Jemili en salles le 11 d&eacute;cembre.
+            br
+            br
+            |                 On vous l&apos;assure, c&apos;est LA super com&eacute;die de cette fin d&apos;ann&eacute;e. Promesse de Barbier !
+        .film-image
+          img(src='/images/newSite/goldenTicketPage/ui-golden-img@3x-1.png' alt='')
+      .film-item
+        .film-image
+          img(src='/images/newSite/goldenTicketPage/ui-golden-img@3x-2.png' alt='')
+        .film-content
+          h4
+            | Une invitation &agrave; partager l&rsquo;aventure de Serge et Malek pour un No&euml;l pas comme les autres
+          p
+            | C&rsquo;est le soir du r&eacute;veillon. Les parisiens les plus chanceux se pr&eacute;parent &agrave; d&eacute;baller leurs cadeaux en famille. D&rsquo;autres regardent la t&eacute;l&eacute;vision seuls chez eux.
+            br
+            br
+            |                 D&rsquo;autres encore, comme Serge, travaillent. Il est le seul SOS-M&eacute;decin de garde ce soir-l&agrave;.
+            br
+            br
+            |                 Serge essaye de suivre le rythme, de mauvaise gr&acirc;ce, quand tombe l&rsquo;adresse de sa prochaine consultation. C&rsquo;est celle d&rsquo;une relation de famille, qui l&rsquo;appelle &agrave; l&rsquo;aide. Il arrive sur les lieux en m&ecirc;me temps qu&rsquo;un livreur Uber Eats, Malek, lui aussi de service ce soir-l&agrave;&mldr;
+      .film-item
+        .film-content
+          h4 Nous serons ravis de vous g&acirc;ter avec plein de places de cin&eacute;ma
+          p
+            | N&rsquo;h&eacute;sitez pas &agrave; participer sur golden-ticket.fr et par avance nous vous souhaitons un tr&egrave;s beau No&euml;l au poil !
+            br
+            br
+            span
+              | NB : Une pens&eacute;e toute sp&eacute;ciale pour ceux qui travailleront pendant cette nuit magique, vous &ecirc;tes nos HEROS du quotidien ! :-)
+        .film-image
+          img(src='/images/newSite/goldenTicketPage/ui-golden-img@3x-3.png' alt='')
+    // End film section
+    // Mobile film section
+    .mobile-film-section
+      .mobile-film-content
+        h4 Chers amis,
+        p
+          | Pour ce dernier Golden Ticket de l&rsquo;ann&eacute;e nous vous pr&eacute;sentons une belle surprise du cin&eacute;ma fran&ccedil;ais qui est 
+          span
+            b DOCTEUR ?
+          |  r&eacute;alis&eacute; par 
+          span Tristan S&eacute;gu&eacute;la, avec Michel Blanc et Hakim Jemili en salles le 11 d&eacute;cembre.
+          br
+          br
+          |               On vous l&apos;assure, c&apos;est LA super com&eacute;die de cette fin d&apos;ann&eacute;e. Promesse de Barbier !
+      .mobile-film-image
+        img(src='/images/newSite/goldenTicketPage/ui-golden-img@3x-1.png' alt='')
+      .mobile-film-content
+        h4
+          | Une invitation &agrave; partager l&rsquo;aventure de Serge et Malek pour un No&euml;l pas comme les autres
+        p
+          | C&rsquo;est le soir du r&eacute;veillon. Les parisiens les plus chanceux se pr&eacute;parent &agrave; d&eacute;baller leurs cadeaux en famille. D&rsquo;autres regardent la t&eacute;l&eacute;vision seuls chez eux.
+          br
+          br
+          |               D&rsquo;autres encore, comme Serge, travaillent. Il est le seul SOS-M&eacute;decin de garde ce soir-l&agrave;.
+          br
+          br
+          |               Serge essaye de suivre le rythme, de mauvaise gr&acirc;ce, quand tombe l&rsquo;adresse de sa prochaine consultation. C&rsquo;est celle d&rsquo;une relation de famille, qui l&rsquo;appelle &agrave; l&rsquo;aide. Il arrive sur les lieux en m&ecirc;me temps qu&rsquo;un livreur Uber Eats, Malek, lui aussi de service ce soir-l&agrave;&mldr;
+      .mobile-film-image
+        img(src='/images/newSite/goldenTicketPage/ui-golden-img@3x-2.png' alt='')
+      .mobile-film-content
+        h4 Nous serons ravis de vous g&acirc;ter avec plein de places de cin&eacute;ma
+        p
+          | N&rsquo;h&eacute;sitez pas &agrave; participer sur golden-ticket.fr et par avance nous vous souhaitons un tr&egrave;s beau No&euml;l au poil !
+          br
+          br
+          |               NB : Une pens&eacute;e toute sp&eacute;ciale pour ceux qui travailleront pendant cette nuit magique, vous &ecirc;tes nos HEROS du quotidien ! :-)
+      .mobile-film-image
+        img(src='/images/newSite/goldenTicketPage/ui-golden-img@3x-3.png' alt='')
+    // End mobile film section
+    // News section
+    .news-section
+      .news-sbuscribe
+        - $isOpen = isset($gt['status']) && $gt['status'] === 'open';
+        if isOpen
+          .news-sbuscribe-content
+            h2 Bonne nouvelle vous &ecirc;tes d&eacute;j&agrave; abonn&eacute; Barbier !
+            p
+              | Vous cumulez les avantages de nos services au poil et vous &ecirc;tes 
+              span inscris d&rsquo;office au golden ticket
+              |  de chaque mois ainsi que
+            h1 10x plus de chances !
+            a(href='#')
+              button.subscribe-btn(type='button')
+                | Participez en 2 clics !
+        else    
+          .non-news-subscribe-content
+            h2
+              | Vous n&rsquo;&ecirc;tes pas (encore) 
+              br
+              | abonn&eacute; &agrave; monsieur barbier
+            a(href='#')
+              button.non-subscribe-btn(type='button')
+                | Si j&rsquo;ai un compte !
+            p
+              | Je souhaite tenter ma chance sans m&rsquo;abonner ! 
+              br
+              span c&rsquo;est gratuit et sans aucune obligation d&apos;achat !
+            form.subscribe-form(action='#')
+              div
+                input(type='email' name='subscribe_email' id='' placeholder='J’indique mon email')
+              button(type='submit') C&rsquo;est parti !
+      .mobile-news-bg
+      .news-social
+        .news-social-content
+          h2
+            | Multipliez encore vos chances de gagner par un partage sur vos r&eacute;seaux sociaux favoris
+          h1 2x plus de chances par publication
+          .social-btn-group
+            .social-btn-item
+              button#facebook-button.facebook-btn(type='button')
+                | Je partage sur facebook
+            .social-btn-item
+              button#twitter-button.twitter-btn(type='button',title=gt.twitter_share_message)
+                | Je partage sur twitter
+    // End news section
+    // Episode section
+    .episode-section
+      h1
+        | Dans les &eacute;pisodes
+        br
+        | pr&eacute;c&eacute;dents...
+      .owl-carousel.owl-theme
+        .item
+          .episode-item
+            .episode-item-img
+              img(src=gt.bot_image_1 alt='')
+              .episode-circle-left
+              .episode-circle-right
+              .episode-date
+                p= gt.bot_title_1
+            .episode-item-content
+              .episode-item-header
+                h3 Partenaires
+                p= gt.bot_text_1
+                h3 Lot &agrave; gagner
+                p= gt.prizes_infos
+                h3 Gagnant
+                p= gt.bot_winner_1
+              .episode-comment
+                .episode-comment-circle-left
+                .episode-comment-circle-right
+                h3 Le commentaire du gagnant
+                p= gt.bot_testi_1
+        .item
+          .episode-item
+            .episode-item-img
+              img(src=gt.bot_image_2 alt='')
+              .episode-circle-left
+              .episode-circle-right
+              .episode-date
+                p= gt.bot_title_2
+            .episode-item-content
+              .episode-item-header
+                h3 Partenaires
+                p= gt.bot_text_2
+                h3 Lot &agrave; gagner
+                p= gt.prizes_infos
+                h3 Gagnant
+                p= gt.bot_winner_2
+              .episode-comment
+                .episode-comment-circle-left
+                .episode-comment-circle-right
+                h3 Le commentaire du gagnant
+                p= gt.bot_testi_2
+        .item
+          .episode-item
+            .episode-item-img
+              img(src=gt.bot_image_3 alt='')
+              .episode-circle-left
+              .episode-circle-right
+              .episode-date
+                p= gt.bot_title_3
+            .episode-item-content
+              .episode-item-header
+                h3 Partenaires
+                p= gt.bot_text_3
+                h3 Lot &agrave; gagner
+                p= gt.prizes_infos
+                h3 Gagnant
+                p= gt.bot_winner_3
+              .episode-comment
+                .episode-comment-circle-left
+                .episode-comment-circle-right
+                h3 Le commentaire du gagnant
+                p= gt.bot_testi_3
+      .episode-content
+        h2.episode-title
+          | &lsquo;&lsquo; On croise les doigts 
+          br
+          | pour vous &rsquo;&rsquo;
+        a(href='#')
+          button.episode-btn(type='button')
+            | ET, t&eacute;l&eacute;phone Maison  !
+      .episode-bottom-img
+        img(src='/images/newSite/goldenTicketPage/fond-golden-siege-2.png' alt='')
+      .mobile-episode-bottom-img
+        img(src='/images/newSite/goldenTicketPage/fond-golden-siege-2@3x.png' alt='')
+    // End episode section
